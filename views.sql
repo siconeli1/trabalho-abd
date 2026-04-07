@@ -1,12 +1,7 @@
--- =========================================
--- VIEWS DO TRABALHO
--- =========================================
-
-
--- =========================================
+-- -------------------------------------------
 -- 1. VIEW SIMPLES
 -- Objetivo: listar dados básicos dos clientes
--- =========================================
+-- -------------------------------------------
 CREATE OR REPLACE VIEW vw_clientes AS
 SELECT 
     customer_id,
@@ -17,11 +12,11 @@ FROM customer;
 
 
 
--- =========================================
+-- -------------------------------------------
 -- 2. VIEW COM RELACIONAMENTO 1:N
 -- Objetivo: relacionar cidades com seus países
 -- Tabelas: city (N) -> country (1)
--- =========================================
+-- -------------------------------------------
 CREATE OR REPLACE VIEW vw_cidade_pais AS
 SELECT 
     c.city_id,
@@ -33,10 +28,10 @@ JOIN country p
 
 
 
--- =========================================
+-- -------------------------------------------
 -- 3. VIEW COM UNION
 -- Objetivo: unir nomes de clientes e funcionários
--- =========================================
+-- -------------------------------------------
 CREATE OR REPLACE VIEW vw_nomes_customer_staff AS
 SELECT 
     first_name,
@@ -52,11 +47,11 @@ FROM staff;
 
 
 
--- =========================================
+-- -------------------------------------------
 -- 4. VIEW COM AGRUPAMENTO (GROUP BY)
 -- Objetivo: quantidade de filmes alugados por cliente
 -- Observação: uso de LEFT JOIN para incluir clientes sem aluguel
--- =========================================
+-- -------------------------------------------
 CREATE OR REPLACE VIEW vw_qtd_filmes_por_cliente AS
 SELECT 
     c.customer_id,
@@ -72,12 +67,12 @@ GROUP BY
 
 
 
--- =========================================
+-- -------------------------------------------
 -- 5. VIEW COM MÚLTIPLOS JOINs
 -- Objetivo: listar clientes e títulos dos filmes alugados
 -- Cadeia: customer -> rental -> inventory -> film
 -- Observação: LEFT JOIN permite retornar NULL caso não haja aluguel
--- =========================================
+-- -------------------------------------------
 CREATE OR REPLACE VIEW vw_cliente_filmes_alugados AS
 SELECT 
     c.customer_id,
