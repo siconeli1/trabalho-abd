@@ -10,15 +10,17 @@ SELECT COUNT(*) FROM customer;
 -- 2. TESTE DAS VIEWS
 -- -------------------------------------------
 SELECT * FROM vw_clientes LIMIT 5;
+
 SELECT * FROM vw_cidade_pais LIMIT 5;
+
 SELECT * FROM vw_nomes_customer_staff LIMIT 5;
 
-SELECT * 
+SELECT *
 FROM vw_qtd_filmes_por_cliente
 ORDER BY quantidade_filmes DESC
 LIMIT 5;
 
-SELECT * 
+SELECT *
 FROM vw_cliente_filmes_alugados
 LIMIT 5;
 
@@ -39,8 +41,8 @@ ORDER BY language_id;
 
 -- -------------------------------------------
 -- 4. TESTES ADICIONAIS
--- Objetivo: verificar se existem clientes sem aluguel
--- ou títulos nulos na base utilizada
+-- Objetivo: verificar se existem clientes sem
+-- aluguel ou títulos nulos na base utilizada
 -- -------------------------------------------
 SELECT *
 FROM vw_qtd_filmes_por_cliente
@@ -50,5 +52,11 @@ SELECT *
 FROM vw_cliente_filmes_alugados
 WHERE title IS NULL;
 
+
+-- -------------------------------------------
+-- 5. VALIDAÇÃO FINAL
+-- Objetivo: identificar a menor quantidade de
+-- aluguéis encontrada na base
+-- -------------------------------------------
 SELECT MIN(quantidade_filmes)
 FROM vw_qtd_filmes_por_cliente;
