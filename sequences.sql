@@ -36,3 +36,6 @@ VALUES (nextval('seq_language_nova'), 'L1');
 
 INSERT INTO language (language_id, name)
 VALUES (nextval('seq_language_nova'), 'L2');
+
+--SELECT * FROM category WHERE category_id >= 1000;
+--SELECT * FROM language  WHERE language_id >= 1000;
