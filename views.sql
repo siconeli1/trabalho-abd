@@ -1,6 +1,5 @@
 -- 1. VIEW SIMPLES
--- Objetivo: listar dados básicos dos clientes
--- -------------------------------------------
+-- listar dados básicos dos clientes
 CREATE OR REPLACE VIEW vw_clientes AS
 SELECT
     customer_id,
@@ -10,11 +9,11 @@ SELECT
 FROM customer;
 
 
--- -------------------------------------------
+
 -- 2. VIEW COM RELACIONAMENTO 1:N
--- Objetivo: relacionar cidades com seus países
--- Tabelas: city (N) -> country (1)
--- -------------------------------------------
+-- relacionar cidades com seus países
+-- city (N) -> country (1)
+
 CREATE OR REPLACE VIEW vw_cidade_pais AS
 SELECT
     c.city_id,
@@ -25,10 +24,10 @@ JOIN country p
     ON c.country_id = p.country_id;
 
 
--- -------------------------------------------
+
 -- 3. VIEW COM UNION
--- Objetivo: unir nomes de clientes e funcionários
--- -------------------------------------------
+-- unir nomes de clientes e funcionários
+
 CREATE OR REPLACE VIEW vw_nomes_customer_staff AS
 SELECT
     first_name || ' ' || last_name AS nome
@@ -39,13 +38,10 @@ SELECT
 FROM staff;
 
 
--- -------------------------------------------
+
 -- 4. VIEW COM AGRUPAMENTO
--- Objetivo: mostrar a quantidade de filmes alugados
--- por cada cliente
--- Observação: foi utilizado LEFT JOIN para incluir
--- clientes sem aluguel, caso existissem na base
--- -------------------------------------------
+-- mostrar a quantidade de filmes alugados por cada cliente
+
 CREATE OR REPLACE VIEW vw_qtd_filmes_por_cliente AS
 SELECT
     c.customer_id,
@@ -60,14 +56,10 @@ GROUP BY
     c.last_name;
 
 
--- -------------------------------------------
 -- 5. VIEW COM MÚLTIPLOS JOINs
--- Objetivo: listar clientes e títulos dos filmes
--- alugados
--- Cadeia: customer -> rental -> inventory -> film
--- Observação: foi utilizado LEFT JOIN para permitir
--- título nulo, caso existisse cliente sem aluguel
--- -------------------------------------------
+-- listar clientes e títulos dos filmes alugados
+--customer -> rental -> inventory -> film
+
 CREATE OR REPLACE VIEW vw_cliente_filmes_alugados AS
 SELECT
     c.customer_id,
@@ -88,3 +80,24 @@ LEFT JOIN film f
 --SELECT * FROM vw_nomes_customer_staff LIMIT 5;
 --SELECT * FROM vw_qtd_filmes_por_cliente ORDER BY quantidade_filmes DESC LIMIT 5;
 --SELECT * FROM vw_cliente_filmes_alugados LIMIT 5;
+
+--INSERT TESTE
+
+INSERT INTO customer
+    (customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, active)
+VALUES
+    (600, 1, 'Joao', 'Sem Aluguel', 'joao@teste.com', 1, TRUE, CURRENT_DATE, 1);
+
+INSERT INTO customer
+    (customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, active)
+VALUES
+    (601, 1, 'Maria', 'Sem Aluguel', 'maria@teste.com', 1, TRUE, CURRENT_DATE, 1);
+
+--SELECT NULOS 
+--TESTE VIEW 4
+SELECT * FROM vw_qtd_filmes_por_cliente
+WHERE customer_id IN (600, 601);
+
+--TESTA VIEW 5
+SELECT * FROM vw_cliente_filmes_alugados
+WHERE customer_id IN (600, 601);
