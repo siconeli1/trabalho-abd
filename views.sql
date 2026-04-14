@@ -80,3 +80,11 @@ LEFT JOIN inventory i
     ON r.inventory_id = i.inventory_id
 LEFT JOIN film f
     ON i.film_id = f.film_id;
+
+
+
+--SELECT * FROM vw_clientes LIMIT 5;
+--SELECT * FROM vw_cidade_pais LIMIT 5;
+--SELECT * FROM vw_nomes_customer_staff LIMIT 5;
+--SELECT * FROM vw_qtd_filmes_por_cliente ORDER BY quantidade_filmes DESC LIMIT 5;
+--SELECT * FROM vw_cliente_filmes_alugados LIMIT 5;
