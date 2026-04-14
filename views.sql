@@ -31,15 +31,11 @@ JOIN country p
 -- -------------------------------------------
 CREATE OR REPLACE VIEW vw_nomes_customer_staff AS
 SELECT
-    first_name,
-    last_name
+    first_name || ' ' || last_name AS nome
 FROM customer
-
 UNION
-
 SELECT
-    first_name,
-    last_name
+    first_name || ' ' || last_name AS nome
 FROM staff;
 
 
