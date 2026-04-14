@@ -82,7 +82,7 @@ LEFT JOIN film f
     ON i.film_id = f.film_id;
 
 
-
+--\c dvdrental
 --SELECT * FROM vw_clientes LIMIT 5;
 --SELECT * FROM vw_cidade_pais LIMIT 5;
 --SELECT * FROM vw_nomes_customer_staff LIMIT 5;
